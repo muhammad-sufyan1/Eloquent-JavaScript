@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Factorial Finder</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            text-align: center;
+        }
+        input {
+            padding: 10px;
+            width: 50px;
+            margin-bottom: 10px;
+        }
+        button {
+            padding: 10px;
+            cursor: pointer;
+        }
+        .result {
+            margin-top: 20px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Factorial Finder</h1>
+    <p>Enter a non-negative integer:</p>
+    <input type="number" id="numberInput" min="0" />
+    <button onclick="calculateFactorial()">Calculate Factorial</button>
+
+    <div class="result" id="result"></div>
+
+    <script>
+        function calculateFactorial() {
+            const numberInput = document.getElementById('numberInput').value;
+            const number = parseInt(numberInput, 10);
+            const resultDiv = document.getElementById('result');
+
+            // Validate input
+            if (isNaN(number) || number < 0) {
+                resultDiv.innerText = 'Please enter a valid non-negative integer.';
+                return;
+            }
+
+            // Calculate factorial
+            const factorial = findFactorial(number);
+            resultDiv.innerText = `Factorial of ${number} is ${factorial}.`;
+        }
+
+        function findFactorial(n) {
+            if (n === 0 || n === 1) {
+                return 1;
+            }
+            return n * findFactorial(n - 1); // Recursive call
+        }
+    </script>
+</body>
+</html>
